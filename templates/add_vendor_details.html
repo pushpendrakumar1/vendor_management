@@ -206,7 +206,13 @@
                 }
             }
          
-                  
+               .form-label {
+            font-weight: bold;
+        }
+
+        .mb-3 {
+            margin-bottom: 1.5rem;
+        }    
         </style>
     </head>
     <body>
@@ -325,103 +331,111 @@
 <div class="container mt-4 pt-2">
         <div class="card">
             <div class="card-body">
-                <h2 class="text-center mt-2" id="head">Update Vendor Details</h2>
-                <form method="post" action="{% url 'update_vendor_details' %}" class="needs-validation" novalidate>
+                <h2 class="text-center mt-2" id="head">Add Vendor</h2>
+                <form method="post" action="{% url 'add_vendor' %}" class="needs-validation" novalidate>
                     {% csrf_token %}
 
-                    <!-- PurchaseOrder Model Fields -->
+                    <!-- Vendor Model Fields -->
                     <div class="mb-3">
-                        <label for="id_po_number" class="form-label">PO Number:</label>
-                        <input type="text" class="form-control" id="id_po_number" name="po_number" required>
+                        <label for="id_name" class="form-label">Vendor Name:</label>
+                        <input type="text" class="form-control" id="id_name" name="name" required>
                         <div class="invalid-feedback">
-                            Please enter the PO number.
+                            Please enter the vendor name.
                         </div>
                     </div>
 
                     <div class="mb-3">
-                        <label for="id_vendor" class="form-label">Vendor:</label>
-                        <select class="form-select" id="id_vendor" name="vendor" required>
-                            {% for vendor in vendors %}
-                                <option value="{{ vendor.id }}">{{ vendor.name }}</option>
-                            {% endfor %}
+                        <label for="id_contact_details" class="form-label">Contact Details:</label>
+                        <input type="text" class="form-control" id="id_contact_details" name="contact_details" required>
+                        <div class="invalid-feedback">
+                            Please enter the contact details.
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="id_address" class="form-label">Address:</label>
+                        <textarea class="form-control" id="id_address" name="address" rows="3" required></textarea>
+                        <div class="invalid-feedback">
+                            Please enter the address.
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="id_vendor_code" class="form-label">Vendor Code:</label>
+                        <input type="text" class="form-control" id="id_vendor_code" name="vendor_code" required>
+                        <div class="invalid-feedback">
+                            Please enter the vendor code.
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="id_on_time_delivery_rate" class="form-label">On-Time Delivery Rate:</label>
+                        <select class="form-select" id="id_on_time_delivery_rate" name="on_time_delivery_rate"
+                            required>
+                            <option value="" disabled selected>Select...</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
                         </select>
                         <div class="invalid-feedback">
-                            Please select the vendor.
+                            Please select the on-time delivery rate.
                         </div>
                     </div>
 
                     <div class="mb-3">
-                        <label for="id_order_date" class="form-label">Order Date:</label>
-                        <input type="date" class="form-control" id="id_order_date" name="order_date" required>
+                        <label for="id_quality_rating_avg" class="form-label">Quality Rating Average:</label>
+                        <select class="form-select" id="id_quality_rating_avg" name="quality_rating_avg" required>
+                            <option value="" disabled selected>Select...</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
                         <div class="invalid-feedback">
-                            Please enter the order date.
+                            Please select the quality rating average.
                         </div>
                     </div>
 
                     <div class="mb-3">
-                        <label for="id_delivery_date" class="form-label">Delivery Date:</label>
-                        <input type="date" class="form-control" id="id_delivery_date" name="delivery_date" required>
+                        <label for="id_average_response_time" class="form-label">Average Response Time:</label>
+                        <select class="form-select" id="id_average_response_time" name="average_response_time" required>
+                            <option value="" disabled selected>Select...</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
                         <div class="invalid-feedback">
-                            Please enter the delivery date.
+                            Please select the average response time.
                         </div>
                     </div>
 
                     <div class="mb-3">
-                        <label for="id_items" class="form-label">Items:</label>
-                        <textarea class="form-control" id="id_items" name="items" rows="3"></textarea>
+                        <label for="id_fulfillment_rate" class="form-label">Fulfillment Rate:</label>
+                        <select class="form-select" id="id_fulfillment_rate" name="fulfillment_rate" required>
+                            <option value="" disabled selected>Select...</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
                         <div class="invalid-feedback">
-                            Please enter the items.
+                            Please select the fulfillment rate.
                         </div>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="id_quantity" class="form-label">Quantity:</label>
-                        <input type="number" class="form-control" id="id_quantity" name="quantity">
-                        <div class="invalid-feedback">
-                            Please enter the quantity.
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="id_status" class="form-label">Status:</label>
-                        <input type="text" class="form-control" id="id_status" name="status">
-                        <div class="invalid-feedback">
-                            Please enter the status.
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="id_quality_rating" class="form-label">Quality Rating:</label>
-                        <input type="text" class="form-control" id="id_quality_rating" name="quality_rating">
-                        <div class="invalid-feedback">
-                            Please enter the quality rating.
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="id_issue_date" class="form-label">Issue Date:</label>
-                        <input type="date" class="form-control" id="id_issue_date" name="issue_date">
-                        <div class="invalid-feedback">
-                            Please enter the issue date.
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="id_acknowledgment_date" class="form-label">Acknowledgment Date:</label>
-                        <input type="date" class="form-control" id="id_acknowledgment_date" name="acknowledgment_date">
-                        <div class="invalid-feedback">
-                            Please enter the acknowledgment date.
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <button type="submit" class="btn btn-primary">Save</button>
+                    <div class="mb-3 text-center" style="padding-left: 35px; padding-right: 35px; ">
+                       <button type="submit" class="btn btn-primary">Add Vendor</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-</div>
 </div>
 <!-- Include Bootstrap JS and your custom scripts here -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
