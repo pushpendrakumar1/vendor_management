@@ -257,100 +257,112 @@
 
 </div>
 <div class="col-lg-10">
-<div class="container mt-4 pt-2" >
-    <div class="card">
-        <div class="card-body">
-            <h2 class="text-center mt-2" id="head">Add Vendor</h2>
-            <form method="post" action="{% url 'add_vendor' %}" class="form">
-                {% csrf_token %}
+<div class="container mt-4 pt-2">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="text-center mt-2" id="head">Add Vendor</h2>
+                <form method="post" action="{% url 'add_vendor' %}" class="needs-validation" novalidate>
+                    {% csrf_token %}
 
-
-                <!-- Vendor Model Fields -->
-                <div class="form-group row mt-4">
-                    <label for="id_name" class="col-sm-2 col-form-label">Vendor Name:</label>
-                    <div class="col-sm-10">
+                    <!-- Vendor Model Fields -->
+                    <div class="mb-3">
+                        <label for="id_name" class="form-label">Vendor Name:</label>
                         <input type="text" class="form-control" id="id_name" name="name" required>
+                        <div class="invalid-feedback">
+                            Please enter the vendor name.
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group row">
-                    <label for="id_contact_details" class="col-sm-2 col-form-label">Contact Details:</label>
-                    <div class="col-sm-10">
+                    <div class="mb-3">
+                        <label for="id_contact_details" class="form-label">Contact Details:</label>
                         <input type="text" class="form-control" id="id_contact_details" name="contact_details" required>
+                        <div class="invalid-feedback">
+                            Please enter the contact details.
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group row">
-                    <label for="id_address" class="col-sm-2 col-form-label">Address:</label>
-                    <div class="col-sm-10">
+                    <div class="mb-3">
+                        <label for="id_address" class="form-label">Address:</label>
                         <textarea class="form-control" id="id_address" name="address" rows="3" required></textarea>
+                        <div class="invalid-feedback">
+                            Please enter the address.
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group row">
-                    <label for="id_vendor_code" class="col-sm-2 col-form-label">Vendor Code:</label>
-                    <div class="col-sm-10">
+                    <div class="mb-3">
+                        <label for="id_vendor_code" class="form-label">Vendor Code:</label>
                         <input type="text" class="form-control" id="id_vendor_code" name="vendor_code" required>
+                        <div class="invalid-feedback">
+                            Please enter the vendor code.
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group row">
-                    <label for="id_on_time_delivery_rate" class="col-sm-2 col-form-label">On-Time Delivery Rate:</label>
-                    <div class="col-sm-10">
-                        <select class="form-control" id="id_on_time_delivery_rate" name="on_time_delivery_rate" required>
+                    <div class="mb-3">
+                        <label for="id_on_time_delivery_rate" class="form-label">On-Time Delivery Rate:</label>
+                        <select class="form-select" id="id_on_time_delivery_rate" name="on_time_delivery_rate"
+                            required>
+                            <option value="" disabled selected>Select...</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
                             <option value="4">4</option>
                             <option value="5">5</option>
                         </select>
+                        <div class="invalid-feedback">
+                            Please select the on-time delivery rate.
+                        </div>
                     </div>
-                </div>
-                
-                <div class="form-group row">
-                    <label for="id_quality_rating_avg" class="col-sm-2 col-form-label">Quality Rating Average:</label>
-                    <div class="col-sm-10">
-                        <select class="form-control" id="id_quality_rating_avg" name="quality_rating_avg" required>
+
+                    <div class="mb-3">
+                        <label for="id_quality_rating_avg" class="form-label">Quality Rating Average:</label>
+                        <select class="form-select" id="id_quality_rating_avg" name="quality_rating_avg" required>
+                            <option value="" disabled selected>Select...</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
                             <option value="4">4</option>
                             <option value="5">5</option>
                         </select>
+                        <div class="invalid-feedback">
+                            Please select the quality rating average.
+                        </div>
                     </div>
-                </div>
-                
-                <div class="form-group row">
-                    <label for="id_average_response_time" class="col-sm-2 col-form-label">Average Response Time:</label>
-                    <div class="col-sm-10">
-                        <select class="form-control" id="id_average_response_time" name="average_response_time" required>
+
+                    <div class="mb-3">
+                        <label for="id_average_response_time" class="form-label">Average Response Time:</label>
+                        <select class="form-select" id="id_average_response_time" name="average_response_time" required>
+                            <option value="" disabled selected>Select...</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
                             <option value="4">4</option>
                             <option value="5">5</option>
                         </select>
+                        <div class="invalid-feedback">
+                            Please select the average response time.
+                        </div>
                     </div>
-                </div>
-                
-                <div class="form-group row">
-                    <label for="id_fulfillment_rate" class="col-sm-2 col-form-label">Fulfillment Rate:</label>
-                    <div class="col-sm-10">
-                        <select class="form-control" id="id_fulfillment_rate" name="fulfillment_rate" required>
+
+                    <div class="mb-3">
+                        <label for="id_fulfillment_rate" class="form-label">Fulfillment Rate:</label>
+                        <select class="form-select" id="id_fulfillment_rate" name="fulfillment_rate" required>
+                            <option value="" disabled selected>Select...</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
                             <option value="4">4</option>
                             <option value="5">5</option>
                         </select>
+                        <div class="invalid-feedback">
+                            Please select the fulfillment rate.
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-10 offset-sm-2">
+
+                    <div class="mb-3">
                         <button type="submit" class="btn btn-primary">Add Vendor</button>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
 </div>
