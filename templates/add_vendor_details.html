@@ -323,96 +323,104 @@
     </div>
     <div class="col-lg-10">
 <div class="container mt-4 pt-2">
-    <div class="card">
-        <div class="card-body">
-            <h2 class="text-center mt-2" id="head">Add Vendor Details</h2>
-            <form method="post" action="{% url 'add_vendor_details' %}" class="form">
-                {% csrf_token %}
+        <div class="card">
+            <div class="card-body">
+                <h2 class="text-center mt-2" id="head">Update Vendor Details</h2>
+                <form method="post" action="{% url 'update_vendor_details' %}" class="needs-validation" novalidate>
+                    {% csrf_token %}
 
-                <!-- PurchaseOrder Model Fields -->
-                <div class="form-group row">
-                    <label for="id_po_number" class="col-sm-2 col-form-label">PO Number:</label>
-                    <div class="col-sm-10">
+                    <!-- PurchaseOrder Model Fields -->
+                    <div class="mb-3">
+                        <label for="id_po_number" class="form-label">PO Number:</label>
                         <input type="text" class="form-control" id="id_po_number" name="po_number" required>
+                        <div class="invalid-feedback">
+                            Please enter the PO number.
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group row">
-                    <label for="id_vendor" class="col-sm-2 col-form-label">Vendor:</label>
-                    <div class="col-sm-10">
-                        <select class="form-control" id="id_vendor" name="vendor" required>
+                    <div class="mb-3">
+                        <label for="id_vendor" class="form-label">Vendor:</label>
+                        <select class="form-select" id="id_vendor" name="vendor" required>
                             {% for vendor in vendors %}
                                 <option value="{{ vendor.id }}">{{ vendor.name }}</option>
                             {% endfor %}
                         </select>
+                        <div class="invalid-feedback">
+                            Please select the vendor.
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group row">
-                    <label for="id_order_date" class="col-sm-2 col-form-label">Order Date:</label>
-                    <div class="col-sm-10">
+                    <div class="mb-3">
+                        <label for="id_order_date" class="form-label">Order Date:</label>
                         <input type="date" class="form-control" id="id_order_date" name="order_date" required>
+                        <div class="invalid-feedback">
+                            Please enter the order date.
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group row">
-                    <label for="id_delivery_date" class="col-sm-2 col-form-label">Delivery Date:</label>
-                    <div class="col-sm-10">
+                    <div class="mb-3">
+                        <label for="id_delivery_date" class="form-label">Delivery Date:</label>
                         <input type="date" class="form-control" id="id_delivery_date" name="delivery_date" required>
+                        <div class="invalid-feedback">
+                            Please enter the delivery date.
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group row">
-                    <label for="id_items" class="col-sm-2 col-form-label">Items:</label>
-                    <div class="col-sm-10">
-                        <textarea class="form-control" id="id_items" name="items" rows="3">{{ form.items.value }}</textarea>
+                    <div class="mb-3">
+                        <label for="id_items" class="form-label">Items:</label>
+                        <textarea class="form-control" id="id_items" name="items" rows="3"></textarea>
+                        <div class="invalid-feedback">
+                            Please enter the items.
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group row">
-                    <label for="id_quantity" class="col-sm-2 col-form-label">Quantity:</label>
-                    <div class="col-sm-10">
-                        <input type="number" class="form-control" id="id_quantity" name="quantity" value="{{ form.quantity.value }}">
+                    <div class="mb-3">
+                        <label for="id_quantity" class="form-label">Quantity:</label>
+                        <input type="number" class="form-control" id="id_quantity" name="quantity">
+                        <div class="invalid-feedback">
+                            Please enter the quantity.
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group row">
-                    <label for="id_status" class="col-sm-2 col-form-label">Status:</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="id_status" name="status" value="{{ form.status.value }}">
+                    <div class="mb-3">
+                        <label for="id_status" class="form-label">Status:</label>
+                        <input type="text" class="form-control" id="id_status" name="status">
+                        <div class="invalid-feedback">
+                            Please enter the status.
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group row">
-                    <label for="id_quality_rating" class="col-sm-2 col-form-label">Quality Rating:</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="id_quality_rating" name="quality_rating" value="{{ form.quality_rating.value }}">
+                    <div class="mb-3">
+                        <label for="id_quality_rating" class="form-label">Quality Rating:</label>
+                        <input type="text" class="form-control" id="id_quality_rating" name="quality_rating">
+                        <div class="invalid-feedback">
+                            Please enter the quality rating.
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group row">
-                    <label for="id_issue_date" class="col-sm-2 col-form-label">Issue Date:</label>
-                    <div class="col-sm-10">
-                        <input type="date" class="form-control" id="id_issue_date" name="issue_date" value="{{ form.issue_date.value }}">
+                    <div class="mb-3">
+                        <label for="id_issue_date" class="form-label">Issue Date:</label>
+                        <input type="date" class="form-control" id="id_issue_date" name="issue_date">
+                        <div class="invalid-feedback">
+                            Please enter the issue date.
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group row">
-                    <label for="id_acknowledgment_date" class="col-sm-2 col-form-label">Acknowledgment Date:</label>
-                    <div class="col-sm-10">
-                        <input type="date" class="form-control" id="id_acknowledgment_date" name="acknowledgment_date" value="{{ form.acknowledgment_date.value }}">
+                    <div class="mb-3">
+                        <label for="id_acknowledgment_date" class="form-label">Acknowledgment Date:</label>
+                        <input type="date" class="form-control" id="id_acknowledgment_date" name="acknowledgment_date">
+                        <div class="invalid-feedback">
+                            Please enter the acknowledgment date.
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group row">
-                    <div class="col-sm-10 offset-sm-2">
+                    <div class="mb-3">
                         <button type="submit" class="btn btn-primary">Save</button>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 </div>
 </div>
 <!-- Include Bootstrap JS and your custom scripts here -->
