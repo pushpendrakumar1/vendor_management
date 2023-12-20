@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #bdc3c7, #2c3e50);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        
+        .container {
+            background: #fff;
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        h2 {
+            text-align: center;
+            color: #3494e6;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            font-weight: bold;
+            color: #3494e6;
+        }
+        
+        input[type="text"], input[type="password"], input[type="email"] {
+            width: 91%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        
+        button {
+            background: #3494e6;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            padding: 10px 39px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background: #1d77c7;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .bt {
+            text-align: center;
+        }
+
+        
+        .error-message {
+            background-color: #d1e7dd;
+            color: red;
+            display: none;
+            margin-right: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .error-message.active {
+            display: block;
+        }
+
+        /* Add new styles for close icon */
+        .close {
+            font-size: 20px;
+            cursor: pointer;
+            float: right;
+            margin-top: -12px;
+        }
+.alert{margin-left: 5px;
+    padding-top: 16px;
+    padding-left: 30px;
+    position: absolute;
+    top: 10px;
+    width: 95vw;
+   
+
+}
+    </style>
+</head>
+
+<body>
+    {% if messages %}
+        <div class="alert error-message active alert-dismissible me-5 " role="alert">
+            {% for message in messages %}
+                {{ message }}
+                <button type="button" class="close float-end" style="background-color: #d1e7dd; border:none;  color: rgb(247, 5, 5)" onclick="closeErrorMessage()" aria-label="Close">
+                    <span class="close2" style="font-size: larger;" aria-hidden="false">&times;</span>
+                </button>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <div class="container">
+        <h2>Signup</h2>
+        <form action="{% url 'signup' %}" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" name="firstName" required>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" name="lastName" required>
+            </div>
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="bt">
+                <button type="submit" style="padding-left: 35px !important; padding-right: 35px !important;" name="signup_btn">
+                    Signup
+                </button>
+                
+            </div>
+        </form>
+        <div class="bt" style="margin-top: 20px;">
+            <button>
+                <a href="/" style="text-decoration: none; color:white">Login</a>
+            </button>
+        </div>
+    </div>
+
+    <!-- Your existing script for closing error messages -->
+    <script>
+        function closeErrorMessage() {
+            document.querySelector('.error-message').classList.remove('active');
+        }
+    </script>
+</body>
+</html>

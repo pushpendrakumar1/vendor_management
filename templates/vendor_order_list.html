@@ -1,0 +1,620 @@
+<!-- vendors/templates/yourapp/vendor_list.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+     <link rel="shortcut icon" href="{% static "images/bat.jpg" %}" type="image/x-icon">
+    <title>Order List</title>
+
+    <!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <!-- DataTables CDN -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css">
+
+    <!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+
+<!-- Bootstrap JS (popper.js and bootstrap.js are required) -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.8/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
+
+    <style>
+       
+
+        .navbar {
+            background-color: #0d6efd !important;
+
+        }
+
+        .nav-link:hover {
+            color: black;
+            font-weight: 600;
+        }
+
+        .navbar a {
+            color: white;
+        }
+
+        .nav-item .active {
+            color: rgb(0, 0, 0) !important;
+            font-weight: 600;
+        }
+
+        #logo {
+            color: #ffffff;
+            /* Text color */
+            font-size: 24px;
+            /* Font size */
+            font-weight: bold;
+            /* Font weight */
+            text-decoration: none;
+            /* Remove underline */
+            text-shadow: 2px 2px 4px #000000;
+        }
+
+        #logo:hover {
+            color: #f8f9fa;
+            /* Text color on hover */
+            /* Add a subtle text shadow on hover */
+        }
+
+        @media (min-width: 1200px) {
+
+            .container,
+            .container-lg,
+            .container-md,
+            .container-sm,
+            .container-xl {
+                max-width: max-content !important;
+            }
+        }
+
+        .rating {
+            font-size: 18px;
+        }
+
+        .stars::before {
+            content: "\2605";
+            color: #ffc107;
+            margin-right: 5px;
+        }
+
+        .stars::after {
+            content: "\2606";
+            color: #ccc;
+        }
+
+        .stars {
+            --rating: 0;
+            display: inline-block;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .stars:before {
+            content: "\2605";
+            color: #ffc107;
+            margin-right: 5px;
+        }
+
+        .stars:after {
+            content: "\2606";
+            color: #ccc;
+            position: absolute;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+        }
+
+        .stars:before,
+        .stars:after {
+            display: block;
+            float: left;
+            width: 20px;
+            height: 1em;
+        }
+
+        .stars:after {
+            z-index: 1;
+        }
+
+        .stars[data-rating="1"]:before,
+        .stars[data-rating="1"]:after {
+            width: 20%;
+        }
+
+        .stars[data-rating="2"]:before,
+        .stars[data-rating="2"]:after {
+            width: 40%;
+        }
+
+        .stars[data-rating="3"]:before,
+        .stars[data-rating="3"]:after {
+            width: 60%;
+        }
+
+        .stars[data-rating="4"]:before,
+        .stars[data-rating="4"]:after {
+            width: 80%;
+        }
+
+        .stars[data-rating="5"]:before,
+        .stars[data-rating="5"]:after {
+            width: 100%;
+        }
+
+        /* Additional style for modal */
+        .modal-lg {
+            max-width: 80% !important;
+        }
+
+        .modal-content {
+            height: 500px;
+            overflow-y: auto;
+        }
+
+        .bar-container {
+            height: 20px;
+            background-color: #eee;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+
+        .bar {
+            height: 100%;
+            border-radius: 5px;
+        }
+
+        .bar-1 {
+            width: 20%;
+            background-color: #dc3545;
+        }
+
+        .bar-2 {
+            width: 40%;
+            background-color: #ffc107;
+        }
+
+        .bar-3 {
+            width: 60%;
+            background-color: #007bff;
+        }
+
+        .bar-4 {
+            width: 80%;
+            background-color: #28a745;
+        }
+
+        .bar-5 {
+            width: 100%;
+            background-color: #198754;
+        }
+
+        #logout {
+            font-weight: 700;
+
+            font-size: 16px;
+        }
+
+        #lg:hover {
+            color: rgb(24, 250, 3);
+        }
+
+        @media screen and (min-width: 1300px) {
+            .collapse {
+                margin-left: 150px;
+            }
+
+        }
+            body {
+                background-color: white;
+            }
+
+            .navbar {
+                background-color: #0d6efd !important;
+                color: white
+            }
+
+            .nav-link:hover {
+                color: black;
+                font-weight: 600;
+            }
+
+            .navbar a {
+                color: white;
+            }
+
+            .nav-item .active {
+                color: rgb(0, 0, 0) !important;
+                font-weight: 600;
+            }
+
+            .col-sm-2 {
+                font-weight: 600;
+            }
+
+            #logo {
+                color: #ffffff;
+                /* Text color */
+                font-size: 24px;
+                /* Font size */
+                font-weight: bold;
+                /* Font weight */
+                text-decoration: none;
+                /* Remove underline */
+                text-shadow: 2px 2px 4px #000000;
+            }
+
+            #logo:hover {
+                color: #f8f9fa;
+                /* Text color on hover */
+                /* Add a subtle text shadow on hover */
+            }
+
+            #logout {
+                font-weight: 700;
+
+                font-size: 16px;
+            }
+
+            #lg:hover {
+
+                color: rgb(24, 250, 3);
+            }
+
+            @media screen and (min-width: 1300px) {
+                .collapse {
+                    margin-left: 150px;
+                }
+
+            }
+
+            @media screen and (min-width: 988px) {
+                #bar {
+                    visibility: hidden;
+                }
+
+            }
+
+            @media screen and (max-width: 1400px) {
+
+                #bar2 {
+                    display: none;
+
+
+                }
+
+            }
+
+            @media screen and (min-width: 1400px) {
+                .col-lg-1 {
+                    min-width: 160px !important;
+                }
+            }
+
+            @media screen and (min-width: 989px) and (max-width: 1400px) {
+                #bar3 {
+                    display: block;
+                    /* or any other display property you want */
+                }
+            }
+
+            @media screen and (max-width: 988px),
+            screen and (min-width: 1401px) {
+                #bar3 {
+                    display: none;
+                }
+            }
+
+            #profile{
+                position: absolute;
+                left: -62px;
+                top: 62px;
+            }
+            .dp{
+                text-decoration:  none;
+                color:  black !important;
+                font-weight: 600;
+            }
+            .dp:hover{
+                color: #007bff !important;
+                text-decoration:  none;
+            }
+            #head {
+                font-size: 45px !important;
+                font-weight: 700;
+                background: linear-gradient(to right, #f70c89, #00bfff);
+                /* Adjust colors as needed */
+                -webkit-background-clip: text;
+                color: transparent;
+                font-size: 2em;
+                font-weight: bold;
+                position: relative;
+    
+                animation: gradientMove 4s ease infinite;
+                /* Adjust animation duration as needed */
+    
+                transform: perspective(1000px) rotateX(5deg);
+            }
+    
+            @media (min-width: 3840px) {
+                #head {
+                    font-size: 4em;
+                }
+            }
+        </style>
+    </head>
+
+    <body>  
+       
+
+        <nav class="navbar navbar-expand-lg  bg-primary">
+            <a class="navbar-brand" href="#" id="logo">Pushpendra Kumar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                style="margin-right: 15px; margin-top:10px;" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"><i class="fa fa-bars"></i></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto" id="bar">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'add_vendor' %}">Add Vendor</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'vendor_list' %}">Vendor List</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'add_vendor_details' %}">Add Vendor Order</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'vendor_order_list' %}">Order List</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <div class="btn-group" style="margin-right: 10px;">
+                        <button type="button" class="btn btn dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <span><img class="img-circle" src='{% static "images/B.png" %}' style="width:40px; border-radius: 80px;"
+                                    alt="User Image"></span>
+                        </button>
+                
+                        <ul class="dropdown-menu px-2 " id="profile" >
+                            <li ><a href="#"  class="dp"><i class="icon-settings px-2"></i> Settings</a></li>
+                            <li ><a href="#"  class="dp"><i class="icon-user px-2"></i> Profile</a></li>
+                            <li><a href="#"  class="dp"><i class="icon-envelope-open px-2"></i> My Messages</a></li>
+                            <li><a href="/"  class="dp" ><i class="icon-logout px-2"></i> Logout</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" class="dp"  href="#"class="dp">Lock Screen</a></li>
+                        </ul>
+                    </div>
+                </ul>
+            </div>
+        </nav>
+
+
+
+        <div class="row">
+            <div class="col-lg-1 border" style="height: 100vh;" id="bar2">
+
+                <div id="sidebar" class="col ">
+                    <ul class="navbar-nav float-start flex-column" id="sidemenu" style="margin-left: -6px;">
+
+                        <li class="nav-item" style="font-weight: 600;">
+                            <a class="nav-link" href="/dashboard"><i class="fa fa-home "
+                                    style="margin-right: 5px;"></i>Dashboard</a>
+                        </li>
+                        <li class="nav-item" style="font-weight: 600;">
+                            <a class="nav-link " href="/add_vendor"><i class="fa fa-plus "
+                                    style="margin-right: 5px;"></i>Vendor</a>
+                        </li>
+                        <li class="nav-item " style="font-weight: 600;">
+                            <a class="nav-link  " href="/vendor_list"><i class="fa fa-list "
+                                    style="margin-right: 5px;"></i>Vendor List</a>
+                        </li>
+                        <li class="nav-item" style="font-weight: 600;">
+                            <a class="nav-link " href="/add_vendor_details"><i class="fa fa-fire "
+                                    style="margin-right: 5px;"></i>&nbspOrder</a>
+                        </li>
+                        <li class="nav-item" style="font-weight: 600;">
+                            <a class="nav-link active" href="/order_list"><i class="fa fa-table  "
+                                    style="margin-right: 5px;"></i>Order List</a>
+                        </li>
+
+                        <li class="nav-item" style="font-weight: 600;">
+                            <a class="nav-link " href="/"><i class="fa fa-rocket "
+                                    style="margin-right: 5px;"></i>Logout</a>
+                        </li>
+
+                    </ul>
+                </div>
+
+
+            </div>
+            <div class="col-lg-1 border" style="height: 100vh;" id="bar3">
+
+                <div id="sidebar" class="col ">
+                    <ul class="navbar-nav float-start flex-column" id="sidemenu" style="margin-left: -6px;">
+
+                        <li class="nav-item" style="font-weight: 600;" title="Dashboard">
+                            <a class="nav-link" href="/dashboard"><i class="fa fa-home "
+                                    style="margin-right: 5px;"></i></a>
+                        </li>
+                        <li class="nav-item" style="font-weight: 600;" title="Add Vendor">
+                            <a class="nav-link " href="/add_vendor"><i class="fa fa-plus "
+                                    style="margin-right: 5px;"></i></a>
+                        </li>
+                        <li class="nav-item " style="font-weight: 600;" title="Vendor List">
+                            <a class="nav-link  " href="/vendor_list"><i class="fa fa-list "
+                                    style="margin-right: 5px;"></i></a>
+                        </li>
+                        <li class="nav-item" style="font-weight: 600;" title="Order">
+                            <a class="nav-link " href="/add_vendor_details"><i class="fa fa-fire "
+                                    style="margin-right: 5px;"></i></a>
+                        </li>
+                        <li class="nav-item" style="font-weight: 600;" title="Order List">
+                            <a class="nav-link active" href="/order_list"><i class="fa fa-table  "
+                                    style="margin-right: 5px;"></i></a>
+                        </li>
+
+                        <li class="nav-item" style="font-weight: 600;" title="Logout">
+                            <a class="nav-link " href="/rolelist"><i class="fa fa-rocket "
+                                    style="margin-right: 5px;"></i></a>
+                        </li>
+
+                    </ul>
+                </div>
+
+
+            </div>
+            <div class="col-lg-10">
+
+                <div class="container mt-4">
+                    <h2 class="text-center mt-2" id="head">Order List</h2>
+                    <div class="table-responsive">
+                        <!-- Your DataTable code remains unchanged -->
+                        <table id="vendorTable"
+                            class="table table-responsive  table-striped table-bordered  table-hover cell-border dataTable no-footer ">
+                            <thead>
+                                <tr class="table  table-hover" style="background-color: rgba(115, 199, 233, 0.842);">
+                                    <th>Vendor Name</th>
+                                    <th>Po Number</th>
+                                    <th>Order Date</th>
+                                    <th>Delivery Date</th>
+                                    <th>Items</th>
+                                    <th>Quantity</th>
+                                    <th>Status</th>
+                                    <th>Quality</th>
+                                    <th>Issue date</th>
+                                    <th>Acknowledgement Date</th>
+                                    <th>Details</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for order in PurchaseOrders %}
+    
+                                <tr>
+                                    <td>{{ order.vendor.name }}</td>
+                                    <td>{{ order.po_number }}</td>
+                                    <td>{{ order.order_date }}</td>
+                                    <td>{{ order.delivery_date }}</td>
+                                    <td>{{ order.items }}</td>
+                                    <td>{{ order.quantity }}</td>
+                                    <td>{{ order.status }}</td>
+                                    <td>{{ order.quality_rating }}</td>
+                                    <td>{{ order.issue_date }}</td>
+                                    <td>{{ order.acknowledgment_date }}</td>
+                                    <td>
+                                        <a href="{% url 'vendor_order_detail' order.id %}" class="btn btn-primary btn-sm"
+                                            title="Edit Details" style="font-size: 10px;">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+    
+                                        <!-- Button to trigger delete confirmation modal -->
+                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                            data-target="#deleteOrderModal{{ order.id }}" title="Delete Order"
+                                            style="font-size: 10px;">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+    
+                                    <!-- Modal for Deleting Order -->
+                                    <div class="modal fade" id="deleteOrderModal{{ order.id }}" tabindex="-1" role="dialog"
+                                        aria-labelledby="deleteOrderModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="deleteOrderModalLabel">Delete Order</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Are you sure you want to delete this order?</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <form action="{% url 'delete_vendor_order' order.id %}" method="post">
+                                                        {% csrf_token %}
+                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Cancel</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        <!-- DataTables JS -->
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                $('#vendorTable').DataTable({
+                    dom: '<"top"iflp<"clear">>rt<"bottom"iflp<"clear">>',
+                    lengthMenu: [10, 25, 50, 75, 100],
+                    pageLength: 10,
+                    searching: true,
+                    ordering: true,
+                    paging: true,
+                    info: true,
+                    drawCallback: function () {
+                        // Apply custom styles to cell borders
+                        applyCellBorderStyles();
+                    },
+                });
+
+                // Function to apply custom styles to cell borders
+                function applyCellBorderStyles() {
+                    // Thin border (0.5px) for both td and th
+                    $('#vendorTable').find('td, th').css('border', '0.5px solid #000');
+                }
+            });
+
+
+
+        </script>
+
+        <!-- Event handler for clicking the "Delete" button in the modal -->
+        <script>
+            $(document).ready(function () {
+                // Event handler for clicking the "Delete" button in the modal
+                $('.confirmDeleteBtn').on('click', function () {
+                    // Submit the form when the "Delete" button is clicked
+                    $(this).closest('form').submit();
+                });
+            });
+        </script>
+        <script>
+            // Open the rating modal
+            function openRatingModal(vendorId) {
+                $('#ratingModal' + vendorId).modal('show');
+            }
+        </script>
+
+    </body>
+
+    </html>
